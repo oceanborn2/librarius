@@ -1,2 +1,13 @@
+
 /clib/bin/
 /clib/epd
+/clib/pic
+CMakeFiles
+CMakeCache.txt
+
+*.log
+*.o
+*.am
+*.in
+*.cmake
+
