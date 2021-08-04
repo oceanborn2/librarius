@@ -18,7 +18,7 @@ UBYTE* createImageCache() {
     /* you have to edit the startup_stm32fxxx.s file and set a big enough heap size */
     UWORD Imagesize = ((EPD_7IN5_V2_WIDTH % 8 == 0)? (EPD_7IN5_V2_WIDTH / 8 ): (EPD_7IN5_V2_WIDTH / 8 + 1)) * EPD_7IN5_V2_HEIGHT;
     if((image = (UBYTE *)malloc(Imagesize)) == NULL) {
-        printf("Failed to apply for black memory...\r\n");
+        printf("Failed to apply for image memory...\r\n");
         return -1;
     }
     return image;
@@ -31,16 +31,18 @@ void freeImageCache(UBYTE* image) {
     free(image);
 }
 
-int frameProc(int frametype)
-{
+int frameClear() {
     struct timespec start={0,0}, finish={0,0}; 
     clock_gettime(CLOCK_REALTIME,&start);
     EPD_7IN5_V2_Clear();
     clock_gettime(CLOCK_REALTIME,&finish);
     printf("%ld S\r\n",finish.tv_sec-start.tv_sec);
     DEV_Delay_ms(500);
+}
 
-
+int frameProc(int frametype)
+{
+    frameClear();
 #if 0  // show bmp
     printf("show window BMP-----------------\r\n");
     Paint_SelectImage(BlackImage);
@@ -66,7 +68,6 @@ int frameProc(int frametype)
     DEV_Delay_ms(2000);
 #endif
 
-#if 1   // Drawing on the image
     //1.Select Image
     //printf("SelectImage:BlackImage\r\n");
     UBYTE* blackImage = createImageCache();
@@ -92,23 +93,18 @@ int frameProc(int frametype)
     Paint_DrawString_EN(10, 20, "hello world", &Font12, WHITE, BLACK);
     Paint_DrawNum(10, 33, 123456789, &Font12, BLACK, WHITE);
     Paint_DrawNum(10, 50, 987654321, &Font16, WHITE, BLACK);
-    Paint_DrawString_CN(130, 0, " ÄãºÃabc", &Font12CN, BLACK, WHITE);
-    Paint_DrawString_CN(130, 20, "Î¢Ñ©µç×Ó", &Font24CN, WHITE, BLACK);
 
     printf("EPD_Display\r\n");
     EPD_7IN5_V2_Display(blackImage);
-    DEV_Delay_ms(2000);
-#endif
-
-    printf("Clear...\r\n");
-    EPD_7IN5_V2_Clear();
-
-    printf("Goto Sleep...\r\n");
-    EPD_7IN5_V2_Sleep();
-    DEV_Delay_ms(3000);//important, at least 2s
-   
     freeImageCache(blackImage);
+    DEV_Delay_ms(2000);
 
+//    printf("Clear...\r\n");
+//    EPD_7IN5_V2_Clear();
+
+//    printf("Goto Sleep...\r\n");
+//    EPD_7IN5_V2_Sleep();
+//    DEV_Delay_ms(2000);//important, at least 2s
     return 0;
 }
 

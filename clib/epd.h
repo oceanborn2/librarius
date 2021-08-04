@@ -6,10 +6,10 @@
 #include "GUI_BMPfile.h"
 #include "ImageData.h"
 #include "Debug.h"
-#include <stdlib.h> // malloc() free()
+#include <stdlib.h> 
 
 UBYTE* createImageCache();
-void freeImageCache(UBYTE* imageCache);
+void freeImageCache(UBYTE*);
 
 int initProc();
 int frameProc(int);

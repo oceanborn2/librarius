@@ -1,6 +1,6 @@
-﻿#include <stdlib.h>     //exit()
-#include <signal.h>     //signal()
-#include "epd.h"   //Examples
+﻿#include <stdlib.h>
+#include <signal.h>
+#include "epd.h"   
 
 void  Handler(int signo)
 {
