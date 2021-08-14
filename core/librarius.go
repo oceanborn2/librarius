@@ -1,9 +1,9 @@
 package main
 
 /*
-#include "clib/epd.h"
+#include "epd.h"
 */
-//import "C"
+import "C"
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 )
 
 func initScreens() {
-	//	c.initProc()
+	C.initProc()
 }
 
 func initAll() {

@@ -23,7 +23,9 @@ include_directories(BEFORE lib/GUI)
 # include(lib/fonts)
 # include(lib/GUI)
 
-add_compile_definitions(USE_BCM2835_LIB)
+add_compile_definitions(DEBUG RPI USELIB_RPI USE_BCM2835_LIB)
+
+#add_linker_options(-Wl --gc-sections)
 
 set(SRCS epd.c 
 	lib/e-Paper/EPD_7in5_V2.c 
@@ -47,11 +49,11 @@ set(TARGET epd)
 
 
 
-add_executable(${TARGET} main.c ${SRCS})
+#add_executable(${TARGET} main.c ${SRCS})
 
 
 
-#add_library(epaper SHARED ${TARGET}_lib ${SRCS})
+add_library(epd SHARED ${TARGET} ${SRCS})
 
 target_link_libraries(${TARGET} bcm2835 m)
 #add_dependencies(${TARGET} m)
