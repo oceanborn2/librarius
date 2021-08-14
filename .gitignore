@@ -6,8 +6,12 @@ CMakeFiles
 CMakeCache.txt
 
 *.log
+*.so
 *.o
 *.am
 *.in
 *.cmake
+platform
+*.a
+pat
 
