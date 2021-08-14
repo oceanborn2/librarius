@@ -393,6 +393,33 @@ lib/GUI/GUI_Paint.c.s:
 	$(MAKE) -f CMakeFiles/epd.dir/build.make CMakeFiles/epd.dir/lib/GUI/GUI_Paint.c.s
 .PHONY : lib/GUI/GUI_Paint.c.s
 
+lib/bcm2835/bcm2835.o: lib/bcm2835/bcm2835.c.o
+
+.PHONY : lib/bcm2835/bcm2835.o
+
+# target to build an object file
+lib/bcm2835/bcm2835.c.o:
+	$(MAKE) -f CMakeFiles/epd.dir/build.make CMakeFiles/epd.dir/lib/bcm2835/bcm2835.c.o
+.PHONY : lib/bcm2835/bcm2835.c.o
+
+lib/bcm2835/bcm2835.i: lib/bcm2835/bcm2835.c.i
+
+.PHONY : lib/bcm2835/bcm2835.i
+
+# target to preprocess a source file
+lib/bcm2835/bcm2835.c.i:
+	$(MAKE) -f CMakeFiles/epd.dir/build.make CMakeFiles/epd.dir/lib/bcm2835/bcm2835.c.i
+.PHONY : lib/bcm2835/bcm2835.c.i
+
+lib/bcm2835/bcm2835.s: lib/bcm2835/bcm2835.c.s
+
+.PHONY : lib/bcm2835/bcm2835.s
+
+# target to generate assembly for a file
+lib/bcm2835/bcm2835.c.s:
+	$(MAKE) -f CMakeFiles/epd.dir/build.make CMakeFiles/epd.dir/lib/bcm2835/bcm2835.c.s
+.PHONY : lib/bcm2835/bcm2835.c.s
+
 lib/e-Paper/EPD_7in5_V2.o: lib/e-Paper/EPD_7in5_V2.c.o
 
 .PHONY : lib/e-Paper/EPD_7in5_V2.o
@@ -459,6 +486,9 @@ help:
 	@echo "... lib/GUI/GUI_Paint.o"
 	@echo "... lib/GUI/GUI_Paint.i"
 	@echo "... lib/GUI/GUI_Paint.s"
+	@echo "... lib/bcm2835/bcm2835.o"
+	@echo "... lib/bcm2835/bcm2835.i"
+	@echo "... lib/bcm2835/bcm2835.s"
 	@echo "... lib/e-Paper/EPD_7in5_V2.o"
 	@echo "... lib/e-Paper/EPD_7in5_V2.i"
 	@echo "... lib/e-Paper/EPD_7in5_V2.s"

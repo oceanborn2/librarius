@@ -1,27 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
 project(clib C)
 
-find_library(bcm2835 REQUIRED)
-find_library(m REQUIRED)
-
+#find_library(m REQUIRED)
+#find_library(bcm2835 REQUIRED)
 #find_library(wiringPI OPTIONAL)
-
-#add_subdirectory(lib/Config)
-#add_subdirectory(lib/e-Paper)
-#add_subdirectory(lib/fonts)
-#add_subdirectory(lib/GUI)
-
-#target_include_directories(ePaper PUBLIC lib/Config lib/e-Paper lib/fonts lib/GUI)
 
 include_directories(BEFORE lib/Config)
 include_directories(BEFORE lib/e-Paper)
 include_directories(BEFORE lib/fonts)
 include_directories(BEFORE lib/GUI)
-
-# include(lib/Config)
-# include(lib/e-Paper)
-# include(lib/fonts)
-# include(lib/GUI)
+include_directories(BEFORE lib/bcm2835)
 
 add_compile_definitions(DEBUG RPI USELIB_RPI USE_BCM2835_LIB)
 
@@ -43,21 +31,13 @@ set(SRCS epd.c
 	lib/Fonts/font20.c
 	lib/Fonts/font24.c
 	#lib/Fonts/font24CN.c 
+	lib/bcm2835/bcm2835.c
 )
 
 set(TARGET epd)
 
-
-
 #add_executable(${TARGET} main.c ${SRCS})
-
-
-
 add_library(epd SHARED ${TARGET} ${SRCS})
-
-target_link_libraries(${TARGET} bcm2835 m)
-#add_dependencies(${TARGET} m)
-#add_dependencies(${TARGET} bcm2835)
-
+target_link_libraries(${TARGET} m)
 
 
