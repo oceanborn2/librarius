@@ -4,18 +4,15 @@
 #include <stdint.h> 
 #include <stdlib.h> 
 
-
 #define UBYTE   uint8_t
 #define UWORD   uint16_t
 #define UDOUBLE uint32_t
 
+extern UBYTE* createImageCache();
+extern void freeImageCache(UBYTE*);
 
-
-UBYTE* createImageCache();
-void freeImageCache(UBYTE*);
-
-int initProc();
-int frameProc(int);
-int closeProc();
+extern int initProc();
+extern int frameProc(int);
+extern int closeProc();
 
 #endif

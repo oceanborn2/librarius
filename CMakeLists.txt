@@ -9,7 +9,7 @@ set(SRCS librarius.go)
 
 add_executable(${TARGET} ${SRCS})
 add_dependencies(${TARGET} goshim)
-target_link_libraries(${TARGET} goshim pthread clib)
+target_link_libraries(${TARGET} goshim pthread epd m)
 
 
 

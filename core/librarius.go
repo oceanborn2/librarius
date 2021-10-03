@@ -1,6 +1,8 @@
 package main
 
 /*
+#cgo CFLAGS: -g -Wall
+#cgo LDFLAGS: -L../clib -lepd -lm
 #include "epd.h"
 */
 import "C"
@@ -46,11 +48,10 @@ func updateContext(ctx *Context) {
 	ctx.yearDay = ctx.timestamp.YearDay()
 	year := ctx.timestamp.Year()
 	month := ctx.timestamp.Month()
-	ctx.month =month
+	ctx.month = month
 	ctx.year = year
 	ctx.leapYear = year%4 == 0 && year%100 != 0 || year%400 == 0
 }
-
 
 func display(ctx Context) {
 	println("timestamp     : ", fmt.Sprintf("", ctx.timestamp))
