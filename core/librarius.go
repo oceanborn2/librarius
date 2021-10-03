@@ -10,6 +10,7 @@ import "C"
 import (
 	"fmt"
 	"time"
+	"unsafe"
 )
 
 func initScreens() {
@@ -53,9 +54,20 @@ func updateContext(ctx *Context) {
 	ctx.leapYear = year%4 == 0 && year%100 != 0 || year%400 == 0
 }
 
+func displayStr(pos int, str string) {
+	println(str)
+	ptrStr:=C.CString(str);
+	defer C.free(unsafe.Pointer(ptrStr));
+	C.drawString(C.int(pos), ptrStr, 16) //, BLACK, WHITE);
+}
+
 func display(ctx Context) {
-	println("timestamp     : ", fmt.Sprintf("", ctx.timestamp))
-	println("weeknumber    : ", fmt.Sprintf("%d", ctx.weekNumber))
+	var pos = 10
+
+	displayStr(pos, "timestamp     : " +  fmt.Sprintf("", ctx.timestamp))
+	pos += 10
+	displayStr(pos, "weeknumber     : " +  fmt.Sprintf("", ctx.weekNumber))
+/*
 	println("odd/even week : ", ctx.weekEven)
 	println("weekday       : ", fmt.Sprintf("%d", ctx.weekDay))
 	println("leapYear      : ", ctx.leapYear)
@@ -63,18 +75,18 @@ func display(ctx Context) {
 	println("yearday       : ", fmt.Sprintf("%d", ctx.yearDay))
 	println("month         : ", fmt.Sprintf("%d", ctx.month))
 	println("monthDay      : ", fmt.Sprintf("%d", ctx.monthDay))
-	println("---------------------------------")
+	println("---------------------------------")*/
 }
 
 func main() {
 	fmt.Println("Librarius service")
 	initAll()
 	defer C.closeProc();
-	C.frameProc(0);
+	C.frameClear();
 	ctx := Context{}
 	for {
 		updateContext(&ctx)
-		time.Sleep(1 * time.Second)
+		time.Sleep(10 * time.Second)
 		display(ctx)
 	}
 }

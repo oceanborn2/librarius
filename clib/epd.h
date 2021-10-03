@@ -11,7 +11,9 @@ UBYTE* createImageCache();
 void freeImageCache(UBYTE*);
 
 int initProc();
-int frameProc(int);
+extern int frameProc(int,char*);
+int frameClear();
+int drawString(int pos, char *str, int size); //, int foreColor, int backgroundColor);
 int closeProc();
 
 #endif

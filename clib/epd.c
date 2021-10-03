@@ -43,9 +43,18 @@ int frameClear() {
     DEV_Delay_ms(500);
 }
 
-int frameProc(int frametype)
+int drawString(int pos, char *str, int size) { //, int foreColor, int backgroundColor) {
+    //sFONT
+    Paint_DrawString_EN(10, pos, str, &Font16, BLACK, WHITE);
+//    Paint_DrawNum(10, 33, 123456789, &Font12, BLACK, WHITE);
+//    Paint_DrawNum(10, 50, 987654321, &Font16, WHITE, BLACK);
+}
+
+
+int frameProc(int frametype, char * str)
 {
     frameClear();
+
 #if 0  // show bmp
     printf("show window BMP-----------------\r\n");
     Paint_SelectImage(BlackImage);
@@ -62,7 +71,7 @@ int frameProc(int frametype)
     DEV_Delay_ms(2000);
 #endif        
 
-#if 0   // show image for array   
+#if 0   // show image for array
     printf("show image for array\r\n");
     Paint_SelectImage(BlackImage);
     Paint_Clear(WHITE);
@@ -94,10 +103,7 @@ int frameProc(int frametype)
     Paint_DrawLine(105, 75, 105, 115, BLACK, DOT_PIXEL_1X1, LINE_STYLE_DOTTED);
 */
 
-    Paint_DrawString_EN(10, 0, "waveshare", &Font16, BLACK, WHITE);
-    Paint_DrawString_EN(10, 20, "hello world", &Font12, WHITE, BLACK);
-    Paint_DrawNum(10, 33, 123456789, &Font12, BLACK, WHITE);
-    Paint_DrawNum(10, 50, 987654321, &Font16, WHITE, BLACK);
+
 
     printf("EPD_Display\r\n");
     EPD_7IN5_V2_Display(blackImage);
