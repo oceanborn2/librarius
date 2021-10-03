@@ -285,7 +285,9 @@ Info:
 UBYTE DEV_Module_Init(void)
 {
     printf("/***********************************/ \r\n");
-	if(DEV_Equipment_Testing() < 0) {
+    int det = DEV_Equipment_Testing();
+	if(det < 0) {
+		printf("DEV_Equipment_Testing: %d", det);
 		return 1;
 	}
 #ifdef RPI

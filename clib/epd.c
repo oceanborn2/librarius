@@ -4,7 +4,10 @@
 
 int initProc(void) {
     printf("EPD_7IN5_V2 initialisation\r\n");
-    if(DEV_Module_Init()!=0){
+
+    int dmi = DEV_Module_Init();
+    if(dmi!=0){
+        printf("DEV_Module_Init: %d", dmi);
         return -1;
     }
 
