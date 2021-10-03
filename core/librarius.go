@@ -69,6 +69,8 @@ func display(ctx Context) {
 func main() {
 	fmt.Println("Librarius service")
 	initAll()
+	defer C.closeProc();
+	C.frameProc(0);
 	ctx := Context{}
 	for {
 		updateContext(&ctx)
