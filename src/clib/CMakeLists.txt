@@ -1,6 +1,25 @@
 cmake_minimum_required(VERSION 3.18)
 project(clib C)
 
+# Forcing values to link to Raspberry's architecture settings
+set(SYSTEM linux)
+set(CMAKE_SYSTEM_NAME Linux)
+#set(CMAKE_SYSTEM_VERSION 10.0.10240.0)
+
+#set(CMAKE_BUILD_RPATH ../../build)
+
+
+
+set(CMAKE_LIBRARY_ARCHITECTURE arm)
+set(CMAKE_C_LIBRARY_ARCHITECTURE arm)
+#set(CMAKE_C_COMPILER clang-11)
+
+message("SYSTEM: " ${SYSTEM})
+message("SYSTEM name: " ${CMAKE_SYSTEM_NAME})
+
+set(CMAKE_HOST_SYSTEM_NAME macos)
+
+
 #find_library(m REQUIRED)
 #find_library(bcm2835 REQUIRED)
 #find_library(wiringPI OPTIONAL)
