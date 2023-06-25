@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.18)
 project(clib C)
 
 #find_library(m REQUIRED)
@@ -15,34 +15,36 @@ add_compile_definitions(DEBUG RPI USELIB_RPI USE_BCM2835_LIB)
 
 #add_linker_options(-Wl --gc-sections)
 
-set(SRCS epd.c 
+set(SRCS epd.c
     lib/bcm2835/bcm2835.c
-	lib/e-Paper/EPD_7in5_V2.c 
-	lib/Config/RPI_sysfs_gpio.c 
-	lib/Config/DEV_Config.c 
-#	lib/Config/sysfs_gpio.c 
-#	lib/Config/sysfs_software_spi.c 
-#	lib/Config/dev_hardware_SPI.c 
-	lib/GUI/GUI_BMPfile.c 
-	lib/GUI/GUI_Paint.c 
-	lib/Fonts/font8.c 
-	lib/Fonts/font12.c 
-	#lib/Fonts/font12CN.c 
+	lib/e-Paper/EPD_7in5_V2.c
+	lib/Config/RPI_sysfs_gpio.c
+	lib/Config/DEV_Config.c
+#	lib/Config/sysfs_gpio.c
+#	lib/Config/sysfs_software_spi.c
+#	lib/Config/dev_hardware_SPI.c
+	lib/GUI/GUI_BMPfile.c
+	lib/GUI/GUI_Paint.c
+	lib/Fonts/font8.c
+	lib/Fonts/font12.c
+	#lib/Fonts/font12CN.c
 	lib/Fonts/font16.c
 	lib/Fonts/font20.c
 	lib/Fonts/font24.c
-	#lib/Fonts/font24CN.c 
+	#lib/Fonts/font24CN.c
 )
 
 set(TARGET epd)
-set(CURRDIR '.')
 add_library(epd SHARED ${TARGET} ${SRCS})
 target_link_libraries(${TARGET} m)
 
-file(GLOB CURRDIR
-#	"*.so"
+
+# Ultimately, the DLLs should be unlinked from the program when it is built locally (macos or x64 linux)
+file(GLOB SOFILE
+	"*.so"
 	"*.dylib"
-#	"*.dll" # to cover all OS cases
+	"*.dll" # to cover all OS cases
 )
-file(COPY ${CURRDIR} DESTINATION ../core)
+
+file(COPY ${SOFILE} DESTINATION ../core)
 

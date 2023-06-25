@@ -1,18 +1,17 @@
-
-/clib/bin/
-/clib/epd
-/clib/pic
+/src/clib/bin/
+/src/clib/epd
+/src/clib/pic
+/src/core/librarius
 CMakeFiles
 CMakeCache.txt
-
 *.log
 *.so
 *.o
 *.am
 *.in
-*.cmake
-platform
+#*.cmake
 *.a
 pat
-core/librarius
+platform
+librarius
 
